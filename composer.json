@@ -1,0 +1,25 @@
+{
+  "name": "boonei/scaffold",
+  "description": "",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Audun Larsen",
+      "email": "larsen@xqus.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Boonei\\Teacher\\": "src"
+    }
+  },
+  "require": {},
+  "extra": {
+      "laravel": {
+          "providers": [
+              "Boonei\\Scaffold\\ScaffoldServiceProvider"
+          ]
+      }
+  }
+}
