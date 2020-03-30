@@ -11,7 +11,7 @@
   ],
   "autoload": {
     "psr-4": {
-      "Boonei\\Teacher\\": "src"
+      "Boonei\\Scaffold\\": "src"
     }
   },
   "require": {},
@@ -20,6 +20,9 @@
           "providers": [
               "Boonei\\Scaffold\\ScaffoldServiceProvider"
           ]
-      }
+      },
+      "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
   }
 }
