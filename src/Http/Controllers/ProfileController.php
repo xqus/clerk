@@ -37,7 +37,7 @@ class ProfileController extends Controller {
 
       $user->save();
 
-      return back()->with('status', 'Contact information updated.');
+      return back()->with('status', __('Contact information updated.'));
   }
 
   public function savePassword(Request $request) {
@@ -53,6 +53,6 @@ class ProfileController extends Controller {
 
       Auth::logoutOtherDevices(request('old_password'));
 
-      return back()->with('status', 'Your password was changed!');
+      return back()->with('status', __('Your password was changed.'));
   }
 }
