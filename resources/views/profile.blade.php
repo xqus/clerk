@@ -5,7 +5,7 @@
 <div class="container pt-2 ">
   <div class="row justify-content-center">
     <div class="col-10">
-      <h3 class="font-weight-light">{{ __('Account settings') }}</h3>
+      <h3 class="font-weight-light pb-4">{{ __('Account settings') }}</h3>
     </div>
   </div>
   <div class="row justify-content-center">
