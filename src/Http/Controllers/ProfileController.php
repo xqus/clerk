@@ -6,12 +6,12 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Routing\Controller;
+use App\Http\Controllers\Controller;
 
 class ProfileController extends Controller {
 
   public function __construct() {
-        //$this->middleware('auth');
+        $this->middleware('web');
   }
 
   public function index() {
@@ -37,20 +37,21 @@ class ProfileController extends Controller {
 
       $user->save();
 
-      return back()->with('status', 'Profile updated!');
+      return back()->with('status', 'Contact information updated.');
   }
 
   public function savePassword(Request $request) {
     $user = Auth::user();
 
     $this->validate(request(), [
-      'password' => 'required|min:8|confirmed'
+      'old_password' => 'required|password',
+      'password'     => 'required|min:8|confirmed'
     ]);
 
       $user->password = Hash::make(request('password'));
 
       $user->save();
 
-      return back()->with('status', 'Password changed!');
+      return back()->with('status', 'Your password was changed!');
   }
 }
