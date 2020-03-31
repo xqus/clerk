@@ -9,7 +9,7 @@
     </div>
   </div>
   <div class="row justify-content-center">
-  <div class="col-3 bg-light text-dark border-right">
+  <div class="col-3 bg-light text-dark border-right rounded-left">
     <div class="mt-2 mb-2 text-uppercase font-weight-light">{{ __('Profile') }}</div>
     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
       <a class="nav-link active" id="v-pills-contact-tab" data-toggle="pill" href="#v-pills-contact" role="tab" aria-controls="v-pills-contact" aria-selected="true">{{ __('Contact information') }}</a>
