@@ -28,7 +28,7 @@
     <div class="alert alert-danger">
         <ul>
             @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
+                <li>{{ __($error) }}</li>
             @endforeach
         </ul>
     </div>
@@ -46,7 +46,7 @@
 
                                         @error('name')
                                             <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
+                                                <strong>{{ __($message) }}</strong>
                                             </span>
                                         @enderror
                                     </div>
@@ -60,7 +60,7 @@
 
                                         @error('email')
                                             <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
+                                                <strong>{{ __($message) }}</strong>
                                             </span>
                                         @enderror
                                     </div>
@@ -89,7 +89,7 @@
 
                     @error('old_password')
                         <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
+                            <strong>{{ __($message) }}</strong>
                         </span>
                     @enderror
                 </div>
@@ -103,7 +103,7 @@
 
                     @error('password')
                         <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
+                            <strong>{{ __($message) }}</strong>
                         </span>
                     @enderror
                 </div>
