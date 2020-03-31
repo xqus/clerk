@@ -12,8 +12,8 @@
   <div class="col-3 bg-light text-dark border-right">
     <div class="mt-2 mb-2 text-uppercase font-weight-light">{{ __('Profile') }}</div>
     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-      <a class="nav-link active" id="v-pills-contact-tab" data-toggle="pill" href="#v-pills-contact" role="tab" aria-controls="v-pills-contact" aria-selected="true">Contact information</a>
-      <a class="nav-link" id="v-pills-password-tab" data-toggle="pill" href="#v-pills-password" role="tab" aria-controls="v-pills-password" aria-selected="false">Password</a>
+      <a class="nav-link active" id="v-pills-contact-tab" data-toggle="pill" href="#v-pills-contact" role="tab" aria-controls="v-pills-contact" aria-selected="true">{{ __('Contact information') }}</a>
+      <a class="nav-link" id="v-pills-password-tab" data-toggle="pill" href="#v-pills-password" role="tab" aria-controls="v-pills-password" aria-selected="false">{{ __('Password') }}</a>
     </div>
   </div>
   <div class="col-7">
