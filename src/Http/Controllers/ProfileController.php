@@ -49,8 +49,9 @@ class ProfileController extends Controller {
     ]);
 
       $user->password = Hash::make(request('password'));
-
       $user->save();
+
+      Auth::logoutOtherDevices(request('old_password'));
 
       return back()->with('status', 'Your password was changed!');
   }
