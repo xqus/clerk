@@ -15,8 +15,16 @@ class ProfileController extends Controller {
   }
 
   public function index() {
+    $user = Auth::user();
+
+    $stripeCustomer = $user->createOrGetStripeCustomer();
+
+    $paymentMethod = $user->defaultPaymentMethod();
+
     return view('scaffold::profile',[
-      'user'  => Auth::user(),
+      'user'          => $user,
+      'intent'        => $user->createSetupIntent(),
+      'paymentMethod' => $paymentMethod,
     ]);
   }
 
@@ -54,5 +62,47 @@ class ProfileController extends Controller {
       Auth::logoutOtherDevices(request('old_password'));
 
       return back()->with('status', __('Your password was changed.'));
+  }
+
+  public function addPaymentMethod(Request $request) {
+    $user = Auth::user();
+    $token = $request->input('stripeToken');
+
+    $user->addPaymentMethod($token);
+    $user->updateDefaultPaymentMethod($token);
+
+    return back()->with('status', __('Your credit card was updated.'));
+  }
+
+  public function remPaymentMethod(Request $request) {
+    $user = Auth::user();
+
+    $user->deletePaymentMethods();
+
+    return back()->with('status', __('Your credit card details was removed.'));
+  }
+
+  public function updateSubscription(Request $request) {
+    $user = Auth::user();
+
+    $this->validate(request(), [
+      'product' => 'required',
+      'plan' => 'required'
+    ]);
+
+    if($request->input('plan')=='none') {
+      $user->subscription($request->input('product'))->cancel();
+      return back()->with('status', __('Your subscription was paused.'));
+    }
+
+    if (!$user->subscribed($request->input('product'))) {
+      $paymentMethod = $user->defaultPaymentMethod();
+
+      $user->newSubscription($request->input('product'), $request->input('plan'))->create($paymentMethod->id);
+    } else {
+      $user->subscription($request->input('product'))->swap($request->input('plan'));
+    }
+
+    return back()->with('status', __('Your subscription was changed.'));
   }
 }

@@ -11,3 +11,12 @@ Route::patch('/profile', [ProfileController::class, 'save'])
 
 Route::patch('/profile/password', [ProfileController::class, 'savePassword'])
       ->name('scaffold.profile.password.patch');
+
+Route::post('/profile/paymentmethod', [ProfileController::class, 'addPaymentMethod'])
+      ->name('scaffold.profile.paymentmethod.post');
+
+Route::delete('/profile/paymentmethod', [ProfileController::class, 'remPaymentMethod'])
+      ->name('scaffold.profile.paymentmethod.delete');
+
+Route::patch('/profile/subscription', [ProfileController::class, 'updateSubscription'])
+      ->name('scaffold.profile.subscription.patch');
