@@ -88,6 +88,7 @@
 
 <script>
     export default {
+        name: 'subscription-management',
         data(){
             return {
                 stripeAPIToken: 'pk_test_XXX',

@@ -1,1 +1,1 @@
-Vue.component('bon-subscription-management', require('./components/SubscriptionManagement.vue'));
+Vue.component('subscription-management', require('./components/SubscriptionManagement.vue').default);
