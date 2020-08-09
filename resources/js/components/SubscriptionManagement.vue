@@ -47,42 +47,24 @@
 
         <h4 class="mt-3 mb-3">Select Subscription</h4>
 
-        <div class="mt-3 row rounded border p-1"
-             v-bind:class="{'bg-success text-light': selectedPlan == 'plan_XXX'}"
-             v-on:click="selectedPlan = 'plan_XXX'">
-            <div class="col-6">
-                Basic
+        <div  v-for="(product, productid) in this.subscriptionPlans">
+            <h5 class="mt-3 mb-3">{{product.title}}</h5>
+            <div v-for="(plan, index) in product.plans" class="mt-3 row rounded border p-1"
+                  v-bind:class="{'bg-success text-light': selectedPlan == index}"
+                  v-on:click="selectedPlan = index">
+                <div class="col-6">
+                    {{ plan.interval }}
+                </div>
+                <div class="col-6">
+                    {{ plan.price }}
+                </div>
             </div>
-            <div class="col-6">
-                $10/mo.
-            </div>
+            <button class="btn btn-primary mt-3" id="add-card-button" v-on:click="updateSubscription(productid)">
+                Subscribe
+            </button>
         </div>
 
-        <div class="mt-3 row rounded border p-1"
-             v-bind:class="{'bg-success text-light': selectedPlan == 'plan_YYY'}"
-             v-on:click="selectedPlan = 'plan_YYY'">
-            <div class="col-6">
-                Professional
-            </div>
-            <div class="col-6">
-                $15/mo.
-            </div>
-        </div>
 
-        <div class="mt-3 row rounded border p-1"
-             v-bind:class="{'bg-success text-light': selectedPlan == 'plan_ZZZ'}"
-             v-on:click="selectedPlan = 'plan_ZZZ'">
-            <div class="col-6">
-                Enterprise
-            </div>
-            <div class="col-6">
-                $20/mo.
-            </div>
-        </div>
-
-        <button class="btn btn-primary mt-3" id="add-card-button" v-on:click="updateSubscription()">
-            Subscribe
-        </button>
     </div>
 </template>
 
@@ -107,7 +89,9 @@
                 paymentMethodsLoadStatus: 0,
                 paymentMethodSelected: {},
 
+                subscriptionPlans: {},
                 selectedPlan: '',
+                product: ''
             }
         },
 
@@ -121,6 +105,8 @@
             this.loadIntent();
 
             this.loadPaymentMethods();
+
+            this.loadSubscriptionPlans();
         },
 
         methods: {
@@ -152,10 +138,17 @@
             /*
                 Loads the payment intent key for the user to pay.
             */
-            loadIntent(){
+            loadIntent() {
                 axios.get('/api/v1/user/setup-intent')
                     .then( function( response ){
                         this.intentToken = response.data;
+                    }.bind(this));
+            },
+
+            loadSubscriptionPlans() {
+                axios.get('/api/v1/user/subscription-plans')
+                    .then( function( response ){
+                        this.subscriptionPlans = response.data;
                     }.bind(this));
             },
 
@@ -188,6 +181,7 @@
                     }
                 }.bind(this));
             },
+
 
             /*
                 Saves the payment method for the user and
@@ -225,10 +219,10 @@
                 }.bind(this));
             },
 
-            updateSubscription(){
+            updateSubscription(productid){
                 axios.put('/api/v1/user/subscription', {
                     plan: this.selectedPlan,
-                    payment: this.paymentMethodSelected
+                    product: productid,
                 }).then( function( response ){
                     console.log( response );
                 }.bind(this));

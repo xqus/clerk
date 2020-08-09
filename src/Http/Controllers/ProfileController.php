@@ -82,7 +82,7 @@ class ProfileController extends Controller {
         return back()->with('status', __('Your credit card details was removed.'));
     }
 
-    public function updateSubscription(Request $request) {
+    /*public function updateSubscription(Request $request) {
         $user = Auth::user();
 
         $this->validate(request(), [
@@ -104,9 +104,101 @@ class ProfileController extends Controller {
         }
 
         return back()->with('status', __('Your subscription was changed.'));
-    }
+    }*/
+
+    /**
+     * API STUFF
+     */
+
 
     public function getSetupIntent(Request $request){
         return $request->user()->createSetupIntent();
+    }
+
+    public function getSubscriptionPlans(Request $request){
+        return config('scaffold.products');
+    }
+
+    public function postPaymentMethods( Request $request ){
+        $user = $request->user();
+        $paymentMethodID = $request->get('payment_method');
+
+        if( $user->stripe_id == null ){
+            $user->createAsStripeCustomer();
+        }
+
+        $user->addPaymentMethod( $paymentMethodID );
+        $user->updateDefaultPaymentMethod( $paymentMethodID );
+
+        return response()->json( null, 204 );
+    }
+
+    /**
+     * Returns the payment methods the user has saved
+     *
+     * @param Request $request The request data from the user.
+     */
+    public function getPaymentMethods( Request $request ){
+        $user = $request->user();
+
+        $methods = array();
+
+        if( $user->hasPaymentMethod() ){
+            foreach( $user->paymentMethods() as $method ){
+                array_push( $methods, [
+                    'id' => $method->id,
+                    'brand' => $method->card->brand,
+                    'last_four' => $method->card->last4,
+                    'exp_month' => $method->card->exp_month,
+                    'exp_year' => $method->card->exp_year,
+                ] );
+            }
+        }
+
+        return response()->json( $methods );
+    }
+
+    /**
+     * Removes a payment method for the current user.
+     *
+     * @param Request $request The request data from the user.
+     */
+    public function removePaymentMethod( Request $request ){
+        $user = $request->user();
+        $paymentMethodID = $request->get('id');
+
+        $paymentMethods = $user->paymentMethods();
+
+        foreach( $paymentMethods as $method ){
+            if( $method->id == $paymentMethodID ){
+                $method->delete();
+                break;
+            }
+        }
+
+        return response()->json( null, 204 );
+    }
+
+    /**
+     * Updates a subscription for the user
+     *
+     * @param Request $request The request containing subscription update info.
+     */
+    public function updateSubscription( Request $request ){
+        $user = $request->user();
+        $productID = $request->get('product');
+        $planID = $request->get('plan');
+        $paymentID = $paymentMethod = $user->defaultPaymentMethod()->id;
+
+        if(!$user->subscribed($productID) ){
+            $user->newSubscription($productID, $planID )
+                ->create( $paymentID );
+        }else{
+            $user->subscription($productID)->swap( $planID );
+        }
+
+        return response()->json([
+            'subscription_updated' => true
+        ]);
     }
 }
