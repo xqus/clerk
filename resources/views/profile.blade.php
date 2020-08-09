@@ -141,7 +141,7 @@
                         <h5 class="mt-2 mb-2 font-weight-light">{{ __('My subscription') }}</h5>
                         <hr>
 
-                        <subscription-management></subscription-management>
+                        <subscription-management apitoken="{{ env('STRIPE_KEY') }}"></subscription-management>
 
                     </div>
                 </div>

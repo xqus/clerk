@@ -89,10 +89,10 @@
 <script>
     export default {
         name: 'subscription-management',
+        props: ['apitoken'],
+
         data(){
             return {
-                stripeAPIToken: 'pk_test_XXX',
-
                 stripe: '',
                 elements: '',
                 card: '',
@@ -110,6 +110,8 @@
                 selectedPlan: '',
             }
         },
+
+
 
         mounted(){
             this.includeStripe('js.stripe.com/v3/', function(){
@@ -139,7 +141,7 @@
                 creating the card element.
             */
             configureStripe(){
-                this.stripe = Stripe( this.stripeAPIToken );
+                this.stripe = Stripe( this.apitoken );
 
                 this.elements = this.stripe.elements();
                 this.card = this.elements.create('card');
