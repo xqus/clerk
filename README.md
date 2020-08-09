@@ -1,6 +1,3 @@
-https://serversideup.net/courses/using-laravel-cashier-with-vuejs-spa-and-laravel-passport-api/
-
-
 Run
 `php artisan vendor:publish --provider="Boonei\Scaffold\ScaffoldServiceProvider" --tag="assets"`
 
