@@ -119,18 +119,29 @@ class ProfileController extends Controller {
         return config('scaffold.products');
     }
 
-    public function postPaymentMethods( Request $request ){
+    public function postPaymentMethods(Request $request){
         $user = $request->user();
         $paymentMethodID = $request->get('payment_method');
 
-        if( $user->stripe_id == null ){
+        if($user->stripe_id == null) {
             $user->createAsStripeCustomer();
         }
 
-        $user->addPaymentMethod( $paymentMethodID );
-        $user->updateDefaultPaymentMethod( $paymentMethodID );
+        $user->addPaymentMethod($paymentMethodID);
+        $user->updateDefaultPaymentMethod($paymentMethodID);
 
-        return response()->json( null, 204 );
+        /*
+         * Delete all but default payment method.
+         */
+        $paymentMethods = $user->paymentMethods();
+
+        foreach($paymentMethods as $method){
+            if($method->id !== $user->defaultPaymentMethod()->id) {
+                $method->delete();
+            }
+        }
+
+        return response()->json(null, 204);
     }
 
     /**
@@ -188,7 +199,7 @@ class ProfileController extends Controller {
         $user = $request->user();
         $productID = $request->get('product');
         $planID = $request->get('plan');
-        $paymentID = $paymentMethod = $user->defaultPaymentMethod()->id;
+        $paymentID = $user->defaultPaymentMethod()->id;
 
         if(!$user->subscribed($productID) ){
             $user->newSubscription($productID, $planID )
