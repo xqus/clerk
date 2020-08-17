@@ -1,49 +1,6 @@
 <template>
     <div>
-        <label>{{ __('Name on card') }}</label>
-        <input id="card-holder-name" type="text" v-model="name" class="form-control mb-2">
-
-        <label>Card</label>
-        <div id="card-element">
-
-        </div>
-
-        <button class="btn btn-primary mt-3" id="add-card-button" v-on:click="submitPaymentMethod()">
-            Save payment method
-        </button>
-
-        <div class="mt-3 mb-3">
-            OR
-        </div>
-
-        <div v-show="paymentMethodsLoadStatus == 2
-            && paymentMethods.length == 0"
-             class="">
-            No payment method on file, please add a payment method.
-        </div>
-
-        <div v-show="paymentMethodsLoadStatus == 2
-                && paymentMethods.length > 0">
-            <div v-for="(method, key) in paymentMethods"
-                 v-bind:key="'method-'+key"
-                 v-on:click="paymentMethodSelected = method.id"
-                 class="border rounded row p-1"
-                 v-bind:class="{
-                    'bg-success text-light': paymentMethodSelected == method.id
-                }">
-                <div class="col-2">
-                    {{ method.brand.charAt(0).toUpperCase() }}{{ method.brand.slice(1) }}
-                </div>
-                <div class="col-7">
-                    Ending In: {{ method.last_four }} Exp: {{ method.exp_month }} / {{ method.exp_year }}
-                </div>
-                <div class="col-3">
-                    <span v-on:click.stop="removePaymentMethod( method.id )">Remove</span>
-                </div>
-            </div>
-        </div>
-
-        <div  v-for="(product, productid) in this.subscriptionPlans">
+        <div v-for="(product, productid) in this.subscriptionPlans">
             <h5 class="mt-3 mb-3">{{product.title}}</h5>
             <div v-for="(plan, index) in product.plans" class="mt-3 row rounded border p-1"
                   v-bind:class="{'bg-success text-light': selectedPlan == index}"
@@ -56,7 +13,7 @@
                 </div>
             </div>
             <button class="btn btn-primary mt-3" id="add-card-button" v-on:click="updateSubscription(productid)">
-                Subscribe
+                {{ __('Update subscription') }}
             </button>
         </div>
     </div>
@@ -97,9 +54,7 @@
             }.bind(this) );
 
             this.loadIntent();
-
             this.loadPaymentMethods();
-
             this.loadSubscriptionPlans();
         },
 
@@ -221,6 +176,9 @@
                     console.log( response );
                 }.bind(this));
             },
+            cardClass(brand) {
+                return 'fab fa-cc-'+brand;
+            }
         }
     }
 </script>
