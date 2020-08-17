@@ -134,15 +134,14 @@
                     <div class="tab-pane fade" id="v-pills-card" role="tabpanel" aria-labelledby="v-pills-card-tab">
                         <h5 class="mt-2 mb-2 font-weight-light">{{ __('My credit card') }}</h5>
                         <hr>
+                        <payment-method apitoken="{{ env('STRIPE_KEY') }}"></payment-method>
 
                     </div>
 
                     <div class="tab-pane fade" id="v-pills-subscription" role="tabpanel" aria-labelledby="v-pills-subscription-tab">
                         <h5 class="mt-2 mb-2 font-weight-light">{{ __('My subscription') }}</h5>
                         <hr>
-
                         <subscription-management apitoken="{{ env('STRIPE_KEY') }}"></subscription-management>
-
                     </div>
                 </div>
             </div>
