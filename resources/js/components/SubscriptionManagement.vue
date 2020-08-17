@@ -1,17 +1,15 @@
 <template>
     <div>
-        <h3>{{$t('managesubscription', 'Manage your subscription')}}</h3>
-
-        <label>{{$t('cardholdername', 'Card holder name')}}</label>
+        <label>{{ __('Name on card') }}</label>
         <input id="card-holder-name" type="text" v-model="name" class="form-control mb-2">
 
-        <label>{{$t('card', 'Card')}}</label>
+        <label>Card</label>
         <div id="card-element">
 
         </div>
 
         <button class="btn btn-primary mt-3" id="add-card-button" v-on:click="submitPaymentMethod()">
-            {{$t('savepayment', 'Save payment method')}}
+            Save payment method
         </button>
 
         <div class="mt-3 mb-3">
@@ -21,7 +19,7 @@
         <div v-show="paymentMethodsLoadStatus == 2
             && paymentMethods.length == 0"
              class="">
-            {{$t('nopaymentmethod', 'No payment method on file, please add a payment method.')}}
+            No payment method on file, please add a payment method.
         </div>
 
         <div v-show="paymentMethodsLoadStatus == 2
@@ -45,8 +43,6 @@
             </div>
         </div>
 
-        <h4 class="mt-3 mb-3">Select Subscription</h4>
-
         <div  v-for="(product, productid) in this.subscriptionPlans">
             <h5 class="mt-3 mb-3">{{product.title}}</h5>
             <div v-for="(plan, index) in product.plans" class="mt-3 row rounded border p-1"
@@ -63,8 +59,6 @@
                 Subscribe
             </button>
         </div>
-
-
     </div>
 </template>
 

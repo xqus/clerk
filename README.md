@@ -4,4 +4,10 @@ Run
 In app.js after loading Vue, before initialising Vue app:
 `require('../boonei/scaffold/js/app');`
 
-https://dev.to/4unkur/how-to-use-laravel-translations-in-js-vue-files-ia
+In the body of your page add:
+```
+    <script>
+        window._locale = '{{ app()->getLocale() }}';
+        window._translations = {!! cache('translations') !!};
+    </script>
+```
