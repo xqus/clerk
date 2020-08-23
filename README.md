@@ -8,6 +8,6 @@ In the body of your page add:
 ```
     <script>
         window._locale = '{{ app()->getLocale() }}';
-        window._translations = {!! cache('translations') !!};
+        window._translations = {!! cache('scaffold.translations') !!};
     </script>
 ```

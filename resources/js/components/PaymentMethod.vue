@@ -29,10 +29,38 @@
         <button class="btn btn-success offset-md-4 mt-2" id="add-card-button" v-on:click="submitPaymentMethod()">
             {{ __('Update credit card') }}
         </button>
+
+        <h5 class="mt-2 mb-2 font-weight-light">{{ __('My subscription') }}</h5>
+        <hr>
+        <div v-for="(product, productid) in this.subscriptionPlans">
+            <h5 class="mt-3 mb-3">{{product.title}}</h5>
+            <div v-for="(plan, index) in product.plans" class="mt-3 row rounded border p-1"
+                 v-bind:class="{'bg-success text-light': selectedPlan == index}"
+                 v-on:click="selectedPlan = index">
+                <div class="col-6">
+                    {{ plan.interval }}
+                </div>
+                <div class="col-6">
+                    {{ plan.price }}
+                </div>
+            </div>
+            <div v-show="paymentMethodsLoadStatus == 2 && paymentMethods.length == 0">
+                No payment method on file, please add a payment method.
+            </div>
+            <button
+                v-show="paymentMethodsLoadStatus == 2 && paymentMethods.length > 0"
+                class="btn btn-primary mt-3"
+                id="add-card-button"
+                v-on:click="updateSubscription(productid)">
+                {{ __('Update subscription') }}
+            </button>
+        </div>
     </div>
 </template>
 
 <script>
+    import scaffold from "../app";
+
     export default {
         name: 'payment-method',
         props: ['apitoken'],
@@ -67,6 +95,7 @@
             }.bind(this) );
 
             this.loadIntent();
+            this.loadSubscriptionPlans();
             this.loadPaymentMethods();
         },
 
@@ -159,9 +188,7 @@
                 axios.get('/api/v1/user/payment-methods')
                     .then( function( response ){
                         this.paymentMethods = response.data;
-
                         this.paymentMethodsLoadStatus = 2;
-                        // this.setDefaultPaymentMethod();
                     }.bind(this));
             },
 
@@ -181,6 +208,14 @@
                     console.log( response );
                 }.bind(this));
             },
+
+            loadSubscriptionPlans() {
+                axios.get('/api/v1/user/subscription-plans')
+                    .then( function( response ){
+                        this.subscriptionPlans = response.data;
+                    }.bind(this));
+            },
+
             cardClass(brand) {
                 return 'fab fa-cc-'+brand;
             }
