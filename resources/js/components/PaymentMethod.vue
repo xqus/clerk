@@ -6,7 +6,7 @@
             <div v-for="(method, key) in paymentMethods"
                  v-bind:key="'method-'+key">
                 <h5><i :class="cardClass(method.brand)"></i> **** **** **** {{ method.last_four }} <small>{{ method.exp_month }} / {{ method.exp_year }}</small></h5>
-                <button v-on:click.stop="removePaymentMethod( method.id )" class="btn btn-danger mt-2 mb-4">
+                <button v-on:click.stop="removePaymentMethod( method.id )" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                     {{__('Delete my credit card')}}
                 </button>
             </div>

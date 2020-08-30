@@ -32,7 +32,7 @@ class ScaffoldServiceProvider extends ServiceProvider
 
       if ($this->app->runningInConsole()) {
           $this->publishes([
-              __DIR__ . '/../resources/js' => resource_path('boonei/scaffold/js'),
+              __DIR__ . '/../public' => public_path('boonei/scaffold'),
           ], 'assets');
       }
 
