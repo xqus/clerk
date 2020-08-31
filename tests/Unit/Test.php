@@ -11,6 +11,6 @@ class Test extends TestCase
     /** @test */
     function lookup_works_1()
     {
-        $this->assertTreu(true);
+        $this->assertTrue(true);
     }
 }

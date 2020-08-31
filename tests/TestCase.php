@@ -1,4 +1,5 @@
 <?php
+
 namespace xqus\Clerk\Tests;
 
 use xqus\Clerk\ClerkServiceProvider;

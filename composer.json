@@ -14,6 +14,11 @@
             "xqus\\Clerk\\": "src"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "xqus\\Clerk\\Tests\\": "tests"
+        }
+    },
     "require": {},
     "require-dev": {
         "phpunit/phpunit": "^9.1@dev",
