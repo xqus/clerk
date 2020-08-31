@@ -5,6 +5,8 @@ namespace xqus\Clerk\Http\Controllers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+
 
 class SubscriptionController extends Controller
 {
@@ -12,6 +14,29 @@ class SubscriptionController extends Controller
     public function __construct()
     {
         $this->middleware(['web', 'auth']);
+    }
+
+    /**
+     * Display the subscription page.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function index() {
+        $user = Auth::user();
+
+        return view('clerk::profile',[
+            'user'          => $user
+        ]);
+    }
+
+    /**
+     * Create and get the setup intent.
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function intent(Request $request){
+        return response()->json($request->user()->createSetupIntent());
     }
 
     /**
