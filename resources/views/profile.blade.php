@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
-    <script src="{{ asset('boonei/scaffold/js/app.js') }}" defer></script>
+    <script src="{{ asset('xqus/clerk/js/app.js') }}" defer></script>
     <script>
         window._locale = '{{ app()->getLocale() }}';
         window._translations = {!! cache('scaffold.translations') !!};
     </script>
-    <link href="{{ asset('boonei/scaffold/css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('xqus/clerk/css/app.css') }}" rel="stylesheet">
 </head>
 
 <body>

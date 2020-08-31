@@ -1,6 +1,6 @@
 <?php
 
-namespace Boonei\Scaffold\Http\Controllers;
+namespace xqus\Clerk\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;

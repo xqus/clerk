@@ -1,12 +1,12 @@
 <?php
 
-use Boonei\Scaffold\Http\Controllers\PaymentMethodController;
+use xqus\Clerk\Http\Controllers\PaymentMethodController;
 use Illuminate\Support\Facades\Route;
-use Boonei\Scaffold\Http\Controllers\SubscriptionController;
-use Boonei\Scaffold\Http\Controllers\ProfileController;
+use xqus\Clerk\Http\Controllers\SubscriptionController;
+use xqus\Clerk\Http\Controllers\ProfileController;
 
 Route::get('/profile', [ProfileController::class, 'index'])
-    ->name('scaffold.profile');
+    ->name('clerk.profile');
 
 Route::group(['prefix' => 'api/v1'], function(){
     Route::get('/user/setup-intent', [ProfileController::class, 'getSetupIntent']);

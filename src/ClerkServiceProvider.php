@@ -1,13 +1,13 @@
 <?php
 
-namespace Boonei\Scaffold;
+namespace xqus\Clerk;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Cache;
 
-class ScaffoldServiceProvider extends ServiceProvider
+class ClerkServiceProvider extends ServiceProvider
 {
 
   /**
@@ -28,11 +28,11 @@ class ScaffoldServiceProvider extends ServiceProvider
   public function boot()
   {
       $this->loadRoutesFrom(__DIR__.'../../routes/web.php');
-      $this->loadViewsFrom(__DIR__.'/../resources/views', 'scaffold');
+      $this->loadViewsFrom(__DIR__.'/../resources/views', 'clerk');
 
       if ($this->app->runningInConsole()) {
           $this->publishes([
-              __DIR__ . '/../public' => public_path('boonei/scaffold'),
+              __DIR__ . '/../public' => public_path('xqus/clerk'),
           ], 'assets');
       }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Boonei\Scaffold\Http\Controllers;
+namespace xqus\Clerk\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -15,7 +15,7 @@ class ProfileController extends Controller {
     public function index() {
         $user = Auth::user();
 
-        return view('scaffold::profile',[
+        return view('clerk::profile',[
             'user'          => $user
         ]);
     }

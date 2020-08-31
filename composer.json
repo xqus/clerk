@@ -1,5 +1,5 @@
 {
-  "name": "boonei/scaffold",
+  "name": "xqus/Clerk",
   "description": "",
   "type": "library",
   "license": "MIT",
@@ -11,14 +11,14 @@
   ],
   "autoload": {
     "psr-4": {
-      "Boonei\\Scaffold\\": "src"
+      "xqus\\Clerk\\": "src"
     }
   },
   "require": {},
   "extra": {
       "laravel": {
           "providers": [
-              "Boonei\\Scaffold\\ScaffoldServiceProvider"
+              "xqus\\Clerk\\ClerkServiceProvider"
           ]
       },
       "branch-alias": {
