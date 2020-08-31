@@ -24,10 +24,11 @@
 <div id="app" class="">
 
     <div class="flex flex-wrap">
-        <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 bg-gray-800 p-4 text-white">
-            hei
+        <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 bg-gray-800 p-4 text-white text-center sm:pt-64">
+            <p class="text-xl">{{__('Authenticated as')}}</p>
+            <p class="text-2xl">{{ $user = Auth::user()->name }}</p>
         </div>
-        <div class="w-full sm:w-1/2 md:w-2/3 lg:w-3/4 bg-gray-100 p-4">
+        <div class="h-screen w-full sm:w-1/2 md:w-2/3 lg:w-3/4 bg-gray-100 p-4">
             <payment-method apitoken="{{ env('STRIPE_KEY') }}"></payment-method>
         </div>
     </div>
