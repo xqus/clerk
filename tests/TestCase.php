@@ -15,6 +15,11 @@ class TestCase extends \Orchestra\Testbench\TestCase {
 
     public function getEnvironmentSetUp($app)
     {
+        config([
+            'cashier.key'    => env('STRIPE_KEY'),
+            'cashier.secret' => env('STRIPE_SECRET'),
+        ]);
+
         include_once __DIR__ . '/migrations/create_users_table.php.stub';
 
         // run the up() method (perform the migration)

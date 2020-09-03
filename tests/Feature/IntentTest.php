@@ -20,7 +20,6 @@ class IntentTest extends TestCase
     {
         $user = factory(User::class)->create();
 
-        Stripe::setApiKey(env('STRIPE_SECRET'));
         $response = $this->actingAs($user)->get('/api/v1/user/setup-intent');
 
         $decodedResponse = json_decode($response->content());
