@@ -36,6 +36,9 @@ class ClerkServiceProvider extends ServiceProvider
           ], 'assets');
       }
 
+      $this->app->make('Illuminate\Database\Eloquent\Factory')
+          ->load(__DIR__.'/../tests/factories');
+
       Cache::rememberForever('scaffold.translations', function () {
           $translations = collect();
           $locales = array_map(

@@ -19,6 +19,10 @@
             "xqus\\Clerk\\Tests\\": "tests"
         }
     },
+    "scripts": {
+        "test": "vendor\\bin\\phpunit",
+        "test-f": "vendor\\bin\\phpunit --filter"
+    },
     "require": {
         "laravel/cashier": "^12.2"
     },

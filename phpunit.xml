@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bootstrap="vendor/autoload.php" backupGlobals="false" backupStaticAttributes="false" colors="true" verbose="true" convertErrorsToExceptions="true" convertNoticesToExceptions="true" convertWarningsToExceptions="true" processIsolation="false" stopOnFailure="false" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
-  <coverage>
-    <include>
-      <directory suffix=".php">src/</directory>
-    </include>
-  </coverage>
-  <testsuites>
-    <testsuite name="Test Suite">
-      <directory>tests</directory>
-    </testsuite>
-  </testsuites>
-  <php>
-    <env name="DB_CONNECTION" value="testing"/>
-  </php>
+    <coverage>
+        <include>
+            <directory suffix=".php">src/</directory>
+        </include>
+    </coverage>
+    <testsuites>
+        <testsuite name="Test Suite">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+    <php>
+        <server name="APP_ENV" value="testing"/>
+        <server name="DB_CONNECTION" value="testing"/>
+        <server name="APP_KEY" value="base64:71UBXSood7IO0b8ISqsadXFN98YdEz2Uo+h5I6h0R9U=" />
+        <server name="STRIPE_KEY" value="pk_test_51HDV9fLBCEpETlBkjPNeLKHlkw1twBX4yrC1r0A0uaUn1ULhPLqttuO36KxUxij9a5SZg8B9XMHfpButcr2Q2b3h00irMh2JM0" />
+        <server name="STRIPE_SECRET" value="sk_test_51HDV9fLBCEpETlBk92BJ7Y4DpAhR7MWYKOxX5nZHE7hq5WgMSuMZlkkLoVPDzASngL7LQpjrt7GlubiguHtiDAVP00NVaqmVsK" />
+        <server name="CASHIER_MODEL" value="xqus\Clerk\Tests\Models\User" />
+    </php>
 </phpunit>
