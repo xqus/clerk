@@ -1,6 +1,6 @@
 <?php
 
-namespace xqus\Clerk\Tests\Unit;
+namespace xqus\Clerk\Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Artisan;
