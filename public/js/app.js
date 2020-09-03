@@ -1976,6 +1976,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'payment-method',
@@ -37705,176 +37724,174 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c(
-        "div",
-        {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value:
-                _vm.paymentMethodsLoadStatus == 2 &&
-                _vm.paymentMethods.length > 0,
-              expression:
-                "paymentMethodsLoadStatus == 2\n            && paymentMethods.length > 0"
-            }
-          ]
-        },
-        _vm._l(_vm.paymentMethods, function(method, key) {
-          return _c("div", { key: "method-" + key }, [
-            _c("h5", { staticClass: "text-lg" }, [
-              _c(
-                "svg",
-                {
-                  staticClass:
-                    "fill-current text-teal-500 inline-block h-12 w-12",
-                  attrs: {
-                    xmlns: "http://www.w3.org/2000/svg",
-                    viewBox: "0 0 20 20"
-                  }
-                },
-                [
-                  _c("path", {
-                    attrs: {
-                      d:
-                        "M18 6V4H2v2h16zm0 4H2v6h16v-6zM0 4c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm4 8h4v2H4v-2z"
-                    }
-                  })
-                ]
-              ),
-              _vm._v(
-                "\n                **** **** **** " +
-                  _vm._s(method.last_four) +
-                  "\n                "
-              ),
-              _c("small", [
-                _vm._v(
-                  _vm._s(method.exp_month) + " / " + _vm._s(method.exp_year)
-                )
-              ])
-            ]),
-            _vm._v(" "),
+  return _c("div", [
+    _c(
+      "div",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value:
+              _vm.paymentMethodsLoadStatus == 2 &&
+              _vm.paymentMethods.length > 0,
+            expression:
+              "paymentMethodsLoadStatus == 2\n            && paymentMethods.length > 0"
+          }
+        ]
+      },
+      _vm._l(_vm.paymentMethods, function(method, key) {
+        return _c("div", { key: "method-" + key }, [
+          _c("h5", { staticClass: "text-lg" }, [
             _c(
-              "button",
+              "svg",
               {
                 staticClass:
-                  "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded",
-                on: {
-                  click: function($event) {
-                    $event.stopPropagation()
-                    return _vm.removePaymentMethod(method.id)
-                  }
+                  "fill-current text-teal-500 inline-block h-12 w-12",
+                attrs: {
+                  xmlns: "http://www.w3.org/2000/svg",
+                  viewBox: "0 0 20 20"
                 }
               },
               [
-                _vm._v(
-                  "\n                " +
-                    _vm._s(_vm.__("Delete my credit card")) +
-                    "\n            "
-                )
+                _c("path", {
+                  attrs: {
+                    d:
+                      "M18 6V4H2v2h16zm0 4H2v6h16v-6zM0 4c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm4 8h4v2H4v-2z"
+                  }
+                })
               ]
-            )
-          ])
-        }),
-        0
-      ),
-      _vm._v(" "),
-      _c("h5", { staticClass: "mt-2 mb-2 font-weight-light" }, [
-        _vm._v(_vm._s(_vm.__("Add / update credit card")))
-      ]),
-      _vm._v(" "),
-      _c("hr"),
-      _vm._v(" "),
-      _c("p", [
-        _c("small", [
-          _vm._v(
-            "\n        " +
-              _vm._s(
-                _vm.__(
-                  "Want to update the credit card that we have on file? Provide the new details here. And don't worry; your card information will never directly touch our servers."
-                )
-              ) +
-              "\n    "
+            ),
+            _vm._v(
+              "\n                **** **** **** " +
+                _vm._s(method.last_four) +
+                "\n                "
+            ),
+            _c("small", [
+              _vm._v(_vm._s(method.exp_month) + " / " + _vm._s(method.exp_year))
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass:
+                "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded",
+              on: {
+                click: function($event) {
+                  $event.stopPropagation()
+                  return _vm.removePaymentMethod(method.id)
+                }
+              }
+            },
+            [
+              _vm._v(
+                "\n                " +
+                  _vm._s(_vm.__("Delete my credit card")) +
+                  "\n            "
+              )
+            ]
           )
         ])
-      ]),
-      _vm._v(" "),
-      _c("div", {
-        staticClass: "bg-light mt-2 ml-4 mr-4",
-        attrs: { id: "card-element" }
       }),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group row pt-2" }, [
-        _c(
-          "label",
-          {
-            staticClass: "col-md-4 col-form-label text-md-right",
-            attrs: { for: "card-holder-name" }
-          },
-          [_vm._v(_vm._s(_vm.__("Name on card")))]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-6" }, [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.name,
-                expression: "name"
-              }
-            ],
-            attrs: { id: "card-holder-name", type: "text" },
-            domProps: { value: _vm.name },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.name = $event.target.value
-              }
-            }
-          })
-        ])
-      ]),
-      _vm._v(" "),
+      0
+    ),
+    _vm._v(" "),
+    _c("h5", { staticClass: "mt-2 mb-2 font-weight-light" }, [
+      _vm._v(_vm._s(_vm.__("Add / update credit card")))
+    ]),
+    _vm._v(" "),
+    _c("hr"),
+    _vm._v(" "),
+    _c("p", [
+      _c("small", [
+        _vm._v(
+          "\n        " +
+            _vm._s(
+              _vm.__(
+                "Want to update the credit card that we have on file? Provide the new details here. And don't worry; your card information will never directly touch our servers."
+              )
+            ) +
+            "\n    "
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", {
+      staticClass: "bg-light mt-2 ml-4 mr-4",
+      attrs: { id: "card-element" }
+    }),
+    _vm._v(" "),
+    _c("div", { staticClass: "form-group row pt-2" }, [
       _c(
-        "button",
+        "label",
         {
-          staticClass: "btn btn-success offset-md-4 mt-2",
-          attrs: { id: "add-card-button" },
-          on: {
-            click: function($event) {
-              return _vm.submitPaymentMethod()
-            }
-          }
+          staticClass: "col-md-4 col-form-label text-md-right",
+          attrs: { for: "card-holder-name" }
         },
-        [_vm._v("\n        " + _vm._s(_vm.__("Update credit card")) + "\n    ")]
+        [_vm._v(_vm._s(_vm.__("Name on card")))]
       ),
       _vm._v(" "),
-      _c("h5", { staticClass: "mt-2 mb-2 font-weight-light" }, [
-        _vm._v(_vm._s(_vm.__("My subscription")))
-      ]),
-      _vm._v(" "),
-      _c("hr"),
-      _vm._v(" "),
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.name,
+              expression: "name"
+            }
+          ],
+          attrs: { id: "card-holder-name", type: "text" },
+          domProps: { value: _vm.name },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.name = $event.target.value
+            }
+          }
+        })
+      ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        staticClass: "btn btn-success offset-md-4 mt-2",
+        attrs: { id: "add-card-button" },
+        on: {
+          click: function($event) {
+            return _vm.submitPaymentMethod()
+          }
+        }
+      },
+      [_vm._v("\n        " + _vm._s(_vm.__("Update credit card")) + "\n    ")]
+    ),
+    _vm._v(" "),
+    _c(
+      "section",
+      { staticClass: "text-gray-700 body-font overflow-hidden" },
       _vm._l(this.subscriptionPlans, function(product, productid) {
-        return _c(
-          "div",
-          [
-            _c("h5", { staticClass: "mt-3 mb-3" }, [
-              _vm._v(_vm._s(product.title))
-            ]),
-            _vm._v(" "),
+        return _c("div", { staticClass: "container px-5 py-24 mx-auto" }, [
+          _c(
+            "h2",
+            {
+              staticClass:
+                "sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900"
+            },
+            [_vm._v(_vm._s(product.title))]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "flex flex-wrap -m-4" },
             _vm._l(product.plans, function(plan, index) {
               return _c(
                 "div",
                 {
-                  staticClass: "mt-3 row rounded border p-1",
-                  class: { "bg-success text-light": _vm.selectedPlan == index },
+                  staticClass: "p-4 xl:w-1/4 md:w-1/2 w-full",
                   on: {
                     click: function($event) {
                       _vm.selectedPlan = index
@@ -37882,84 +37899,184 @@ var render = function() {
                   }
                 },
                 [
-                  _c("div", { staticClass: "col-6" }, [
-                    _vm._v(
-                      "\n                " +
-                        _vm._s(plan.interval) +
-                        "\n            "
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-6" }, [
-                    _vm._v(
-                      "\n                " +
-                        _vm._s(plan.price) +
-                        "\n            "
-                    )
-                  ])
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "h-full p-6 rounded-lg border-2 border-gray-300 flex flex-col relative overflow-hidden",
+                      class: { "border-indigo-500": _vm.selectedPlan == index }
+                    },
+                    [
+                      _c(
+                        "h2",
+                        {
+                          staticClass:
+                            "text-sm tracking-widest title-font mb-1 font-medium"
+                        },
+                        [_vm._v("START")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "h1",
+                        {
+                          staticClass:
+                            "text-5xl text-gray-900 pb-4 mb-4 border-b border-gray-200 leading-none"
+                        },
+                        [
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(plan.price) +
+                              "\n                        "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "span",
+                        {
+                          staticClass: "text-lg ml-1 font-normal text-gray-500"
+                        },
+                        [_vm._v(_vm._s(plan.interval))]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "p",
+                        { staticClass: "flex items-center text-gray-600 mb-2" },
+                        [
+                          _c(
+                            "span",
+                            {
+                              staticClass:
+                                "w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-500 text-white rounded-full flex-shrink-0"
+                            },
+                            [
+                              _c(
+                                "svg",
+                                {
+                                  staticClass: "w-3 h-3",
+                                  attrs: {
+                                    fill: "none",
+                                    stroke: "currentColor",
+                                    "stroke-linecap": "round",
+                                    "stroke-linejoin": "round",
+                                    "stroke-width": "2.5",
+                                    viewBox: "0 0 24 24"
+                                  }
+                                },
+                                [
+                                  _c("path", {
+                                    attrs: { d: "M20 6L9 17l-5-5" }
+                                  })
+                                ]
+                              )
+                            ]
+                          ),
+                          _vm._v(
+                            "\n                            Vexillologist pitchfork\n                        "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "flex items-center mt-auto text-white bg-gray-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-gray-600 rounded"
+                        },
+                        [
+                          _vm._v("Button\n                            "),
+                          _c(
+                            "svg",
+                            {
+                              staticClass: "w-4 h-4 ml-auto",
+                              attrs: {
+                                fill: "none",
+                                stroke: "currentColor",
+                                "stroke-linecap": "round",
+                                "stroke-linejoin": "round",
+                                "stroke-width": "2",
+                                viewBox: "0 0 24 24"
+                              }
+                            },
+                            [
+                              _c("path", {
+                                attrs: { d: "M5 12h14M12 5l7 7-7 7" }
+                              })
+                            ]
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "text-xs text-gray-500 mt-3" }, [
+                        _vm._v(
+                          "Literally you probably haven't heard of them jean shorts."
+                        )
+                      ])
+                    ]
+                  )
                 ]
               )
             }),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value:
-                      _vm.paymentMethodsLoadStatus == 2 &&
-                      _vm.paymentMethods.length == 0,
-                    expression:
-                      "paymentMethodsLoadStatus == 2 && paymentMethods.length == 0"
-                  }
-                ]
-              },
-              [
-                _vm._v(
-                  "\n            No payment method on file, please add a payment method.\n        "
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value:
-                      _vm.paymentMethodsLoadStatus == 2 &&
-                      _vm.paymentMethods.length > 0,
-                    expression:
-                      "paymentMethodsLoadStatus == 2 && paymentMethods.length > 0"
-                  }
-                ],
-                staticClass: "btn btn-primary mt-3",
-                attrs: { id: "add-card-button" },
-                on: {
-                  click: function($event) {
-                    return _vm.updateSubscription(productid)
-                  }
+            0
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value:
+                    _vm.paymentMethodsLoadStatus == 2 &&
+                    _vm.paymentMethods.length == 0,
+                  expression:
+                    "paymentMethodsLoadStatus == 2 && paymentMethods.length == 0"
                 }
-              },
-              [
-                _vm._v(
-                  "\n            " +
-                    _vm._s(_vm.__("Update subscription")) +
-                    "\n        "
-                )
               ]
-            )
-          ],
-          2
-        )
-      })
-    ],
-    2
-  )
+            },
+            [
+              _vm._v(
+                "\n                No payment method on file, please add a payment method.\n            "
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value:
+                    _vm.paymentMethodsLoadStatus == 2 &&
+                    _vm.paymentMethods.length > 0,
+                  expression:
+                    "paymentMethodsLoadStatus == 2 && paymentMethods.length > 0"
+                }
+              ],
+              staticClass: "btn btn-primary mt-3",
+              attrs: { id: "add-card-button" },
+              on: {
+                click: function($event) {
+                  return _vm.updateSubscription(productid)
+                }
+              }
+            },
+            [
+              _vm._v(
+                "\n                " +
+                  _vm._s(_vm.__("Update subscription")) +
+                  "\n            "
+              )
+            ]
+          )
+        ])
+      }),
+      0
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -50304,8 +50421,8 @@ module.exports = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\xqus\scaffold\packages\boonei\scaffold\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\xqus\scaffold\packages\boonei\scaffold\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\xqus\scaffold\packages\xqus\Clerk\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\xqus\scaffold\packages\xqus\Clerk\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

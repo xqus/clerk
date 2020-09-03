@@ -35,32 +35,51 @@
         <button class="btn btn-success offset-md-4 mt-2" id="add-card-button" v-on:click="submitPaymentMethod()">
             {{ __('Update credit card') }}
         </button>
+        <section class="text-gray-700 body-font overflow-hidden">
+            <div v-for="(product, productid) in this.subscriptionPlans" class="container px-5 py-24 mx-auto">
+                <h2 class="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">{{product.title}}</h2>
+                <div class="flex flex-wrap -m-4">
+                    <div v-for="(plan, index) in product.plans" class="p-4 xl:w-1/4 md:w-1/2 w-full"
+                         v-on:click="selectedPlan = index"
+                    >
 
-        <h5 class="mt-2 mb-2 font-weight-light">{{ __('My subscription') }}</h5>
-        <hr>
-        <div v-for="(product, productid) in this.subscriptionPlans">
-            <h5 class="mt-3 mb-3">{{product.title}}</h5>
-            <div v-for="(plan, index) in product.plans" class="mt-3 row rounded border p-1"
-                 v-bind:class="{'bg-success text-light': selectedPlan == index}"
-                 v-on:click="selectedPlan = index">
-                <div class="col-6">
-                    {{ plan.interval }}
+                        <div class="h-full p-6 rounded-lg border-2 border-gray-300 flex flex-col relative overflow-hidden"
+                             v-bind:class="{'border-indigo-500': selectedPlan == index}"
+                        >
+                            <h2 class="text-sm tracking-widest title-font mb-1 font-medium">START</h2>
+                            <h1 class="text-5xl text-gray-900 pb-4 mb-4 border-b border-gray-200 leading-none">
+                                {{plan.price}}
+                            </h1>
+                            <span class="text-lg ml-1 font-normal text-gray-500">{{plan.interval}}</span>
+                            <p class="flex items-center text-gray-600 mb-2">
+                                <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-500 text-white rounded-full flex-shrink-0">
+                                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                                        <path d="M20 6L9 17l-5-5"></path>
+                                    </svg>
+                                </span>
+                                Vexillologist pitchfork
+                            </p>
+                            <button class="flex items-center mt-auto text-white bg-gray-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-gray-600 rounded">Button
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-auto" viewBox="0 0 24 24">
+                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                            <p class="text-xs text-gray-500 mt-3">Literally you probably haven't heard of them jean shorts.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-6">
-                    {{ plan.price }}
+                <div v-show="paymentMethodsLoadStatus == 2 && paymentMethods.length == 0">
+                    No payment method on file, please add a payment method.
                 </div>
+                <button
+                    v-show="paymentMethodsLoadStatus == 2 && paymentMethods.length > 0"
+                    class="btn btn-primary mt-3"
+                    id="add-card-button"
+                    v-on:click="updateSubscription(productid)">
+                    {{ __('Update subscription') }}
+                </button>
             </div>
-            <div v-show="paymentMethodsLoadStatus == 2 && paymentMethods.length == 0">
-                No payment method on file, please add a payment method.
-            </div>
-            <button
-                v-show="paymentMethodsLoadStatus == 2 && paymentMethods.length > 0"
-                class="btn btn-primary mt-3"
-                id="add-card-button"
-                v-on:click="updateSubscription(productid)">
-                {{ __('Update subscription') }}
-            </button>
-        </div>
+        </section>
     </div>
 </template>
 
