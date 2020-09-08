@@ -72,7 +72,25 @@ class SubscriptionController extends Controller
      */
     public function getPlans()
     {
-        return response()->json(config('scaffold.products'));
+        $products = config('scaffold.products');
+        $user = Auth::user();
+
+        foreach($products as $productId => $product) {
+            $products[$productId]['subscribed'] = false;
+            if($user->subscribed($productId)) {
+              $products[$productId]['subscribed'] = true;
+            }
+
+            foreach($product['plans'] as $planId => $plan) {
+                $products[$productId]['plans'][$planId]['current_plan'] = false;
+                if ($user->subscribedToPlan($planId, $productId)) {
+                    $products[$productId]['plans'][$planId]['current_plan'] = true;
+                }
+            }
+
+
+        }
+        return response()->json($products);
     }
 
 }
