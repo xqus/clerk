@@ -39,14 +39,12 @@
             <div v-for="(product, productid) in this.subscriptionPlans" class="container px-5 py-24 mx-auto">
                 <h2 class="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">{{product.title}}</h2>
                 <div class="flex flex-wrap -m-4">
-                    <div v-for="(plan, index) in product.plans" class="p-4 xl:w-1/4 md:w-1/2 w-full"
-                         v-on:click="selectedPlan = index"
-                    >
+                    <div v-for="(plan, index) in product.plans" class="p-4 xl:w-1/4 md:w-1/2 w-full">
 
                         <div class="h-full p-6 rounded-lg border-2 border-gray-300 flex flex-col relative overflow-hidden"
                              v-bind:class="{'border-indigo-500': selectedPlan == index}"
                         >
-                            <h2 class="text-sm tracking-widest title-font mb-1 font-medium">START</h2>
+                            <span v-show="plan.current_plan" class="bg-green-500 text-white px-3 py-1 tracking-widest text-xs absolute right-0 top-0 rounded-bl">CURRENT</span>
                             <h1 class="text-5xl text-gray-900 pb-4 mb-4 border-b border-gray-200 leading-none">
                                 {{plan.price}}
                             </h1>
@@ -59,7 +57,8 @@
                                 </span>
                                 Vexillologist pitchfork
                             </p>
-                            <button class="flex items-center mt-auto text-white bg-gray-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-gray-600 rounded">Button
+                            <button v-on:click="updateSubscription(productid, index)" v-show="paymentMethodsLoadStatus == 2 && paymentMethods.length > 0" class="flex items-center mt-auto text-white bg-gray-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-gray-600 rounded">
+                                Select plan
                                 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-auto" viewBox="0 0 24 24">
                                     <path d="M5 12h14M12 5l7 7-7 7"></path>
                                 </svg>
@@ -71,13 +70,6 @@
                 <div v-show="paymentMethodsLoadStatus == 2 && paymentMethods.length == 0">
                     No payment method on file, please add a payment method.
                 </div>
-                <button
-                    v-show="paymentMethodsLoadStatus == 2 && paymentMethods.length > 0"
-                    class="btn btn-primary mt-3"
-                    id="add-card-button"
-                    v-on:click="updateSubscription(productid)">
-                    {{ __('Update subscription') }}
-                </button>
             </div>
         </section>
     </div>
@@ -225,12 +217,12 @@
                 }.bind(this));
             },
 
-            updateSubscription(productid){
+            updateSubscription(product, plan){
                 axios.put('/api/v1/user/subscription', {
-                    plan: this.selectedPlan,
-                    product: productid,
+                    plan: plan,
+                    product: product,
                 }).then( function( response ){
-                    console.log( response );
+                    this.loadSubscriptionPlans();
                 }.bind(this));
             },
 
